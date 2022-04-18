@@ -1,8 +1,12 @@
 import React from "react";
+import NewLeisureActivityForm from "./NewLeisureActivityForm";
 
 function FormPage(){
     return(
-        <h1>Form Page</h1>
+        <>
+            <h1>Are you doing green things? Show it here!</h1>
+            <NewLeisureActivityForm />
+        </>
     )
 }
 
