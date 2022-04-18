@@ -2,7 +2,8 @@ import React from "react";
 
 function Landing(){
     return(
-        <h1>Landing Page</h1>
+        // Probably replace this with a Jumbotron
+        <h1>Welcome to GreenThings!</h1>
     )
 }
 
