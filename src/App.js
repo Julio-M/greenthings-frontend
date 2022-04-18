@@ -1,9 +1,16 @@
+import React from "react";
 import './App.css';
 import { Outlet } from "react-router-dom";
+import NavBar from './Components/NavBar';
+import Footer from './Components/Footer';
 
 function App() {
   return (
-    <Outlet />
+    <>
+      <NavBar />
+      <Outlet />
+      <Footer />
+    </>
   );
 }
 
