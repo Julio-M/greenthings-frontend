@@ -1,11 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import NewLeisureActivityForm from "./NewLeisureActivityForm";
+import OutpostActivityForm from "./OutpostActivityForm";
+import Button from 'react-bootstrap/Button'
+import "./Form.css"
 
 function FormPage(){
+    // const [formIsVisible, setFormIsVisible] = useState(false)
+    const [formType, setFormType] = useState("")
+
+    function handleFormAppear(e){
+        console.log(e.target.name)
+        setFormType(e.target.name)
+        // setFormType
+    }
     return(
         <>
             <h1 style={{textAlign: "center", padding: "30px 40px"}}>Are you doing green things? Show it here!</h1>
-            <NewLeisureActivityForm />
+
+            <Button className="centered" name="outpost" onClick={handleFormAppear}>Outpost Form</Button>
+            <Button className="centered" name="leisure" onClick={handleFormAppear}>Leisure Form</Button>
+
+            { formType === "outpost" ? <OutpostActivityForm/> : <NewLeisureActivityForm/>}
         </>
     )
 }
