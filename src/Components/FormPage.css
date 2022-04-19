@@ -1,9 +1,12 @@
 .form-choice-btn{
     text-Align: center;
 }
+.form-choice-btn p {
+    margin-bottom: 0px;
+}
 
 .choice-btn{
-    margin: 20px 40px;
+    margin: 5px 40px 20px 40px;
     background-color: #F4A442;
     border: none;
 }

@@ -18,6 +18,7 @@ function FormPage(){
             <h1 style={{textAlign: "center", padding: "30px 40px"}}>Are you doing green things? Show it here!</h1>
 
             <Container className="form-choice-btn">
+                <p>Toggle between outpost and leisure activities.</p>
                 <Button className="choice-btn" name="outpost" onClick={handleFormAppear}>Outpost Form</Button>
                 <Button className="choice-btn" name="leisure" onClick={handleFormAppear}>Leisure Form</Button>
             </Container>

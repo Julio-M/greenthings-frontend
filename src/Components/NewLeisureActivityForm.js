@@ -8,7 +8,7 @@ import Col from 'react-bootstrap/Col';
 
 function NewLeisureActivityForm(){
     const [leisureForm, setLeisureForm] = useState({
-        pseudonym: "Deer",
+        avatar: "Deer",
         activity_type: "Picnic at the Park",
         activity_location: "",
         activity_description: "",
@@ -17,7 +17,7 @@ function NewLeisureActivityForm(){
         comment: ""
       })
 
-      const {pseudonym, 
+      const {avatar, 
              activity_type, 
              activity_location, 
              activity_description, 
@@ -36,14 +36,15 @@ function NewLeisureActivityForm(){
         <Form className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
-                    <Form.Label>Pseudonym</Form.Label>
-                    <Form.Select name="pseudonym" value={pseudonym} onChange={handleLeisureFormChange}>
+                    <Form.Label>Avatar</Form.Label>
+                    <Form.Select name="avatar" value={avatar} onChange={handleLeisureFormChange}>
                         <option>Deer</option>
                         <option>Squirrel</option>
                         <option>Falcon</option>
                         <option>Pigeon</option>
                         <option>Rat</option>
                         <option>Coyote</option>
+                        <option>Raccoon</option>
                     </Form.Select>
                 </Form.Group>
                 <Row>
@@ -67,8 +68,8 @@ function NewLeisureActivityForm(){
                     </Col>
                     <Col xs={12} md={4}>
                         <Form.Group>
-                            <Form.Label>Activity Date</Form.Label>
-                            <Form.Control name="activity_date" value={activity_date} onChange={handleLeisureFormChange} type="date"/>
+                            <Form.Label>Activity Date &amp; Time</Form.Label>
+                            <Form.Control name="activity_date" value={activity_date} onChange={handleLeisureFormChange} type="datetime-local"/>
                         </Form.Group>
                     </Col>
                 </Row>
