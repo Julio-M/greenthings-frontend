@@ -38,11 +38,9 @@ function OutpostActivityForm(){
             <Form.Group>
                 <Form.Label>Activity Type</Form.Label>
                 <Form.Select name="activity_type" value={activity_type} size="text" onChange={handleOutpostActivityFormChange}>
-                    <option>Recylcing</option>
+                    <option>Recycling</option>
                     <option>Composting</option>
-                    <option>Frisbee</option>
-                    <option>Pickup Soccer</option>
-                    <option>Other Outdoor Sports</option>
+                    <option>Gardening</option>
                 </Form.Select>
             </Form.Group>
             <Form.Group>
