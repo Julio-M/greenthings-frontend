@@ -23,6 +23,27 @@
 #map-nav-card:hover::before{
     opacity: 0.8;
 }
+
+#activity-nav-card{
+    position: relative
+}
+#activity-nav-card::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.3;
+    background-image: url("./images/activity.png");
+    background-position: center;
+    background-size: cover;
+    bacgkround-repeat: no-repeat;
+}
+#activity-nav-card:hover::before{
+    opacity: 0.8;
+}
+
 .rel-text{
     position: relative;
 }

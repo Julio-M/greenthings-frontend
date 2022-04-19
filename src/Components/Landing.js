@@ -31,9 +31,9 @@ function Landing(){
                     </Col>
                     <Col md={6}>
                         <div id="activity-nav-card" className="nav-card">
-                            <h3>Input your own activity</h3>
-                            <p>Put yourself on the map and let others know what you're up to!</p>
-                            <Button style={{backgroundColor: "#125C13", color: "white", border: "none"}} href="/new-activity">New Activity</Button>
+                            <h3 className="rel-text">Input your own activity</h3>
+                            <p className="rel-text">Put yourself on the map and let others know what you're up to!</p>
+                            <Button className="rel-text" style={{backgroundColor: "#125C13", color: "white", border: "none"}} href="/new-activity">New Activity</Button>
                         </div>
                     </Col>
                 </Row>
