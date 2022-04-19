@@ -11,8 +11,8 @@ function NavBar(){
                 <Navbar.Brand style={{color: "white"}} href="/">GreenThings</Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="map">Map</Nav.Link>
-                    <Nav.Link href="about">About</Nav.Link>
+                    <Nav.Link href="map">Live Map</Nav.Link>
+                    <Nav.Link href="new-activity">Add New Activity</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
