@@ -8,17 +8,19 @@ import Col from 'react-bootstrap/Col';
 
 function OutpostActivityForm(){
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
-        pseudonym: "Deer",
+        avatar: "Deer",
         activity_type: "Picnic at the Park",
         activity_location: "",
+        activity_description,
         activity_date: Date.now(),
         rating: 0,
         comment: ""
       })
 
-      const {pseudonym, 
+      const {avatar, 
              activity_type, 
              activity_location, 
+             activity_description,
              activity_date, 
              rating,
              comment} = outpostActivityForm
@@ -35,8 +37,8 @@ function OutpostActivityForm(){
         <Form className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
-                    <Form.Label>Pseudonym</Form.Label>
-                    <Form.Select name="pseudonym" value={pseudonym} onChange={handleOutpostActivityFormChange}>
+                    <Form.Label>Avatar</Form.Label>
+                    <Form.Select name="avatar" value={avatar} onChange={handleOutpostActivityFormChange}>
                         <option>Deer</option>
                         <option>Squirrel</option>
                         <option>Falcon</option>
@@ -64,11 +66,15 @@ function OutpostActivityForm(){
                     </Col>
                     <Col xs={12} md={4}>
                         <Form.Group>
-                            <Form.Label>Activity Date</Form.Label>
-                            <Form.Control name="activity_date" value={activity_date} onChange={handleOutpostActivityFormChange} type="date"/>
+                            <Form.Label>Activity Date &amp; Time</Form.Label>
+                            <Form.Control name="activity_date" value={activity_date} onChange={handleOutpostActivityFormChange} type="datetime-local"/>
                         </Form.Group>
                     </Col>
                 </Row>
+                <Form.Group>
+                    <Form.Label>Activity Description</Form.Label>
+                    <Form.Control name="activity_description" value={activity_description} onChange={handleOutpostActivityFormChange} type="text"/>
+                </Form.Group>
                 <Form.Group>
                     <Form.Label>Outpost rating</Form.Label>
                     <Form.Control id="outpost-comment-box" name="rating" value={rating} onChange={handleOutpostActivityFormChange} type="number"/>

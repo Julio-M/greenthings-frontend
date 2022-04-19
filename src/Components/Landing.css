@@ -1,0 +1,31 @@
+.nav-card{
+    text-align: center;
+    border: black 2px solid;
+    border-radius: 5px;
+    padding: 20px
+}
+#map-nav-card{
+    position: relative
+}
+#map-nav-card::before{
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    opacity: 0.3;
+    background-image: url("./images/map.png");
+    background-position: center;
+    background-size: cover;
+    bacgkround-repeat: no-repeat;
+}
+#map-nav-card:hover::before{
+    opacity: 0.8;
+}
+.rel-text{
+    position: relative;
+}
+#activity-nav-card{
+
+}
