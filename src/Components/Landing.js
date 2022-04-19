@@ -2,7 +2,7 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Link } from "react-router-dom";
+import Button from 'react-bootstrap/Button';
 
 
 function Landing(){
@@ -22,13 +22,13 @@ function Landing(){
                     <Col md={6}>
                         <div style={{textAlign: "center"}}>
                             <h3>View Live Map</h3>
-                            <Link to="map">O</Link>
+                            <Button style={{backgroundColor: "#F4A442", border: "none"}} href="/map">Map</Button>
                         </div>
                     </Col>
                     <Col md={6}>
                         <div style={{textAlign: "center"}}>
                             <h3>Input your own activity</h3>
-                            <Link to="new-activity">O</Link>
+                            <Button style={{backgroundColor: "#125C13", color: "white", border: "none"}} href="/new-activity">New Activity</Button>
                         </div>
                     </Col>
                 </Row>

@@ -1,0 +1,21 @@
+.new-leasure-form{
+    /* top: 50%;
+    left: 50%;
+    width: 600px;
+    transform: translateX(-50%);
+    position: absolute; */
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px; 
+}
+
+.form-label{
+    margin-bottom: 0px;
+}
+.form-control{
+    margin-bottom: 10px;
+}
+
+#comment-box{
+    height: 300px;
+}
