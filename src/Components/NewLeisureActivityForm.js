@@ -36,7 +36,7 @@ function NewLeisureActivityForm(){
         <Form className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
-                    <Form.Label>Pseudonym</Form.Label>
+                    <Form.Label>Avatar</Form.Label>
                     <Form.Select name="avatar" value={avatar} onChange={handleLeisureFormChange}>
                         <option>Deer</option>
                         <option>Squirrel</option>
@@ -44,6 +44,7 @@ function NewLeisureActivityForm(){
                         <option>Pigeon</option>
                         <option>Rat</option>
                         <option>Coyote</option>
+                        <option>Raccoon</option>
                     </Form.Select>
                 </Form.Group>
                 <Row>

@@ -26,7 +26,7 @@ function Landing(){
                         <div id="map-nav-card" className="nav-card">
                             <h3 className="rel-text">View Live Map</h3>
                             <p className="rel-text">View what activities others around you are engaging in as we speak.</p>
-                            <Button className="rel-text" style={{backgroundColor: "#F4A442", border: "none"}} href="/map">Map</Button>
+                            <Button className="rel-text" style={{backgroundColor: "#F4A442", border: "none"}} href="/map">Live Map</Button>
                         </div>
                     </Col>
                     <Col md={6}>
