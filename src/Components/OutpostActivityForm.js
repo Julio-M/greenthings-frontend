@@ -5,15 +5,16 @@ import "./NewLeisureActivityForm.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Typeahead } from 'react-bootstrap-typeahead';
+import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
 
+const AsyncTypeahead = withAsync(Typeahead);
 function OutpostActivityForm(){
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
-        activity_type: "Picnic at the Park",
+        activity_type: "Recycling",
         activity_location: "",
-        activity_description,
-        activity_date: Date.now(),
+        activity_description: "",
+        activity_date: "",
         rating: 0,
         comment: ""
       })
@@ -25,29 +26,39 @@ function OutpostActivityForm(){
              activity_date, 
              rating,
              comment} = outpostActivityForm
+     
+    //  const [outpostsArray, setOutpostsArrayState] = useState([])
+     const [typeahead, setTypeaheadState] = useState({
+         isLoading: false,
+         options: [],
+         value: ""
+     })
 
-      let outpostsArray = []
-      useEffect(()=>{
-        //Populate the outposts Array to be used for autopopulate in the Location input
+    //   useEffect(()=>{
+    //     //Populate the outposts Array to be used for autopopulate in the Location input
         
-        fetch("http://localhost:9292/outposts")
-          .then(res => res.json())
-          .then(outposts => {
-              outposts.forEach(outpost => outpostsArray.push(outpost.name))
-          })
-          .then(console.log(outpostsArray))
-      },[])
+    //     fetch("http://localhost:9292/outposts")
+    //       .then(res => res.json())
+    //       .then(outposts => {
+    //           const nameArray = outposts.map(outpost => {
+    //             const outpostObj = {id: outpost.id, name: outpost.name}
+    //             return outpostObj
+    //             })
+    //           setOutpostsArrayState(nameArray);
+    //       })
+    //   },[])
+    
 
       function handleOutpostActivityFormChange(e){
         const new_value = e.target.value;
         console.log(e.target.name)
         setOutpostActivityFormState({...outpostActivityForm, [e.target.name]: new_value })
       }
-
-      function handleOutpostAutoComplete(){
-      //Make a fetch request to the api to retrieve outpost names
-      //Store the names in an array
-          
+      function handleTypeaheadChange(s){
+          console.log("What is s?:", s)
+          console.log("Name?:", typeof s[0].name)
+          let name = s[0].name
+        setOutpostActivityFormState({...outpostActivityForm, activity_location: name})
       }
 
     return(
@@ -81,7 +92,28 @@ function OutpostActivityForm(){
                     <Col xs={12} md={4}>
                         <Form.Group>
                             <Form.Label>Outpost Location</Form.Label>
-                            <Typeahead multiple id="activity-location-input" name="activity_location" value={activity_location} onChange={handleOutpostAutoComplete} options={outpostsArray}/>
+                            <AsyncTypeahead 
+                                id="activity-location-input" 
+                                onSearch={()=>{
+                                    setTypeaheadState({...typeahead, isLoading: true});
+                                    fetch("http://localhost:9292/outposts")
+                                    .then(res => res.json())
+                                    .then(outposts => {
+                                        const nameArray = outposts.map(outpost => {
+                                            const outpostObj = {id: outpost.id, name: outpost.name}
+                                            return outpostObj
+                                            })
+                                        setTypeaheadState({...typeahead, isLoading: false, options: nameArray});
+                                    })
+                                }}
+                                labelKey={option => option.name} 
+                                isLoading={typeahead.isLoading}
+                                onChange={selected => {
+                                    setTypeaheadState({...typeahead, value: selected[0].name})
+                                    setOutpostActivityFormState({...outpostActivityForm, activity_location: typeahead.value})
+                                }}
+                                
+                                options={typeahead.options}/>
                         </Form.Group>
                     </Col>
                     <Col xs={12} md={4}>
