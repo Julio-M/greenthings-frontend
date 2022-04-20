@@ -6,8 +6,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios'
+import ProgressBar from 'react-bootstrap/ProgressBar'
 
 function NewLeisureActivityForm(){
+    const [isLoading,setIsLoading] = useState(0)
 
     const [myImage, setMyImage] = useState("")
 
@@ -39,21 +41,32 @@ function NewLeisureActivityForm(){
 
       const handleImageSubmit = (e) =>{
         e.preventDefault()
+        console.log(isLoading)
         const formData = new FormData()
         formData.append("file", myImage)
         formData.append("upload_preset", "dyza3ykz")
 
-        axios.post("https://api.cloudinary.com/v1_1/dimfaeuml/image/upload",formData)
+        axios.post("https://api.cloudinary.com/v1_1/dimfaeuml/image/upload",formData,{
+            onUploadProgress: progress => {
+                setIsLoading(Math.round(progress.loaded/progress.total*100))
+            }
+        })
         .then(res=>setLeisureForm({...leisureForm, image:res.data.secure_url}))
+        // .then(()=>setIsLoading(0))
 
       }
 
       const handleUpload = (e) =>{
+          setIsLoading(0)
           const file = e.target.files[0]
           setMyImage(file)
       }
 
       console.log("IMAGE",myImage)
+
+      const now = isLoading;
+
+    const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 
     return(
         <>
@@ -114,7 +127,14 @@ function NewLeisureActivityForm(){
                     <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Upload Image</Form.Label>
                         <Form.Control type="file" onChange={handleUpload}/>
-                        <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
+                        <Row>
+                            <Col xs={12} md={3}>
+                            <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
+                            </Col>
+                            <Col xs={12} md={8}>
+                            {progressInstance}
+                            </Col>
+                        </Row>
                     </Form.Group>
                 </Col>
                 </Row>
