@@ -92,7 +92,7 @@ function OutpostActivityForm(){
                     <Col xs={12} md={4}>
                         <Form.Group>
                             <Form.Label>Outpost Location</Form.Label>
-                            <AsyncTypeahead 
+                            <AsyncTypeahead
                                 id="activity-location-input" 
                                 onSearch={()=>{
                                     setTypeaheadState({...typeahead, isLoading: true});
@@ -109,8 +109,16 @@ function OutpostActivityForm(){
                                 labelKey={option => option.name} 
                                 isLoading={typeahead.isLoading}
                                 onChange={selected => {
-                                    setTypeaheadState({...typeahead, value: selected[0].name})
-                                    setOutpostActivityFormState({...outpostActivityForm, activity_location: typeahead.value})
+
+                                    if(selected.length !== 0){
+                                        setTypeaheadState({...typeahead, value: selected[0].name})
+                                        setOutpostActivityFormState({...outpostActivityForm, activity_location: typeahead.value})
+                                    }else{
+                                        setTypeaheadState({...typeahead, value: ""})
+                                        setOutpostActivityFormState({...outpostActivityForm, activity_location: ""})
+                                    }
+                                    console.log(selected)
+                                    
                                 }}
                                 
                                 options={typeahead.options}/>
