@@ -1,0 +1,14 @@
+.mapCol{
+  margin-left: 50%;
+  width: 50%;
+  position: fixed;
+}
+
+.cardCol{
+  float: left;
+  width: 50%;
+}
+
+.filter{
+  position: sticky;
+}
