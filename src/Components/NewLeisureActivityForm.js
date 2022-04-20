@@ -5,14 +5,19 @@ import "./NewLeisureActivityForm.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import axios from 'axios'
 
 function NewLeisureActivityForm(){
+
+    const [myImage, setMyImage] = useState("")
+
     const [leisureForm, setLeisureForm] = useState({
         avatar: "Deer",
         activity_type: "Picnic at the Park",
         activity_location: "",
         activity_description: "",
         activity_date: Date.now(),
+        image:"",
         rating: 0,
         comment: ""
       })
@@ -22,6 +27,7 @@ function NewLeisureActivityForm(){
              activity_location, 
              activity_description, 
              activity_date,
+             image,
              rating, 
              comment} = leisureForm
 
@@ -30,6 +36,25 @@ function NewLeisureActivityForm(){
         console.log(e.target.name)
         setLeisureForm({...leisureForm, [e.target.name]: new_value })
       }
+
+      const handleImageSubmit = (e) =>{
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("file", myImage)
+        formData.append("upload_preset", "dyza3ykz")
+
+        axios.post("https://api.cloudinary.com/v1_1/dimfaeuml/image/upload",formData)
+        .then(res=>setLeisureForm({...leisureForm, image:res.data.secure_url}))
+
+      }
+
+      const handleUpload = (e) =>{
+          const file = e.target.files[0]
+          setMyImage(file)
+      }
+
+      console.log("IMAGE",myImage)
+
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
@@ -78,10 +103,21 @@ function NewLeisureActivityForm(){
                     <Form.Control name="activity_description" value={activity_description} onChange={handleLeisureFormChange} type="text"/>
                     <Form.Text>Please limit text to no more than N characters.</Form.Text>
                 </Form.Group>
+                <Row>
+                <Col xs={12} md={6}>
                 <Form.Group>
                     <Form.Label>Location Rating</Form.Label>
                     <Form.Control name="rating" value={rating} onChange={handleLeisureFormChange} type="number"></Form.Control>
                 </Form.Group>
+                </Col>
+                <Col xs={12} md={6}>    
+                    <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Upload Image</Form.Label>
+                        <Form.Control type="file" onChange={handleUpload}/>
+                        <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
+                    </Form.Group>
+                </Col>
+                </Row>
                 <Form.Group>
                     <Form.Label>Comment</Form.Label>
                     <Form.Control id="comment-box" name="comment" value={comment} onChange={handleLeisureFormChange} type="text"/>
