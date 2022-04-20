@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import "./NewLeisureActivityForm.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Typeahead } from 'react-bootstrap-typeahead';
 
 function OutpostActivityForm(){
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
@@ -25,16 +26,35 @@ function OutpostActivityForm(){
              rating,
              comment} = outpostActivityForm
 
+      let outpostsArray = []
+      useEffect(()=>{
+        //Populate the outposts Array to be used for autopopulate in the Location input
+        
+        fetch("http://localhost:9292/outposts")
+          .then(res => res.json())
+          .then(outposts => {
+              outposts.forEach(outpost => outpostsArray.push(outpost.name))
+          })
+          .then(console.log(outpostsArray))
+      },[])
+
       function handleOutpostActivityFormChange(e){
         const new_value = e.target.value;
         console.log(e.target.name)
         setOutpostActivityFormState({...outpostActivityForm, [e.target.name]: new_value })
       }
+
+      function handleOutpostAutoComplete(){
+      //Make a fetch request to the api to retrieve outpost names
+      //Store the names in an array
+          
+      }
+
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Outpost Activity</h2>
         
-        <Form className="new-leasure-form">
+        <Form autoComplete="off" className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
                     <Form.Label>Avatar</Form.Label>
@@ -61,7 +81,7 @@ function OutpostActivityForm(){
                     <Col xs={12} md={4}>
                         <Form.Group>
                             <Form.Label>Outpost Location</Form.Label>
-                            <Form.Control name="activity_location" value={activity_location} onChange={handleOutpostActivityFormChange} type="text"/>
+                            <Typeahead multiple id="activity-location-input" name="activity_location" value={activity_location} onChange={handleOutpostAutoComplete} options={outpostsArray}/>
                         </Form.Group>
                     </Col>
                     <Col xs={12} md={4}>

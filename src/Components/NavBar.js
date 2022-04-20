@@ -8,11 +8,11 @@ function NavBar(){
     return(
         <Navbar id="global-nav">
             <Container style={{margin: "0px"}}>
-                <Navbar.Brand style={{color: "white"}} href="/">GreenThings</Navbar.Brand>
+                <Navbar.Brand id="nav-brand" style={{color: "white"}} href="/">ActiveCritters</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link className="menu-link" href="/">Home</Nav.Link>
-                    <Nav.Link className="menu-link" href="map">Live Map</Nav.Link>
-                    <Nav.Link className="menu-link" href="new-activity">Add New Activity</Nav.Link>
+                    <Nav.Link style={{color: "white"}} href="/">Home</Nav.Link>
+                    <Nav.Link style={{color: "white"}} href="map">Live Map</Nav.Link>
+                    <Nav.Link style={{color: "white"}} href="new-activity">Add New Activity</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
