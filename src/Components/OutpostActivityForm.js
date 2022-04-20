@@ -12,18 +12,18 @@ function OutpostActivityForm(){
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
         activity_type: "Recycling",
-        activity_location: "",
-        activity_description: "",
-        activity_date: "",
+        outpost_id: 0,
+        description: "",
+        datetime: "",
         rating: 0,
         comment: ""
       })
 
       const {avatar, 
              activity_type, 
-             activity_location, 
-             activity_description,
-             activity_date, 
+             outpost_id, 
+             description,
+             datetime, 
              rating,
              comment} = outpostActivityForm
      
@@ -34,38 +34,31 @@ function OutpostActivityForm(){
          value: ""
      })
 
-    //   useEffect(()=>{
-    //     //Populate the outposts Array to be used for autopopulate in the Location input
-        
-    //     fetch("http://localhost:9292/outposts")
-    //       .then(res => res.json())
-    //       .then(outposts => {
-    //           const nameArray = outposts.map(outpost => {
-    //             const outpostObj = {id: outpost.id, name: outpost.name}
-    //             return outpostObj
-    //             })
-    //           setOutpostsArrayState(nameArray);
-    //       })
-    //   },[])
-    
-
       function handleOutpostActivityFormChange(e){
         const new_value = e.target.value;
         console.log(e.target.name)
         setOutpostActivityFormState({...outpostActivityForm, [e.target.name]: new_value })
       }
-      function handleTypeaheadChange(s){
-          console.log("What is s?:", s)
-          console.log("Name?:", typeof s[0].name)
-          let name = s[0].name
-        setOutpostActivityFormState({...outpostActivityForm, activity_location: name})
-      }
+    function handleOutpostActivitySubmit(e){
+        e.preventDefault()
+        //Make a POST request to create a new Outpost Activity
+        const configObj={
+            method: "POST", 
+            headers: {
+                "Content-Type" : "application/json",
+                "Accepts" : "application/json"
+            },
+            body: JSON.stringify(outpostActivityForm)
+        }
+        fetch("http://localhost:9292/outpost-activities", configObj)
+        .then(res => console.log(res.json()))
+    }
 
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Outpost Activity</h2>
         
-        <Form autoComplete="off" className="new-leasure-form">
+        <Form onSubmit={handleOutpostActivitySubmit} autoComplete="off" className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
                     <Form.Label>Avatar</Form.Label>
@@ -112,10 +105,10 @@ function OutpostActivityForm(){
 
                                     if(selected.length !== 0){
                                         setTypeaheadState({...typeahead, value: selected[0].name})
-                                        setOutpostActivityFormState({...outpostActivityForm, activity_location: typeahead.value})
+                                        setOutpostActivityFormState({...outpostActivityForm, outpost_id: selected[0].id})
                                     }else{
                                         setTypeaheadState({...typeahead, value: ""})
-                                        setOutpostActivityFormState({...outpostActivityForm, activity_location: ""})
+                                        setOutpostActivityFormState({...outpostActivityForm, outpost_id: ""})
                                     }
                                     console.log(selected)
                                     
@@ -127,13 +120,13 @@ function OutpostActivityForm(){
                     <Col xs={12} md={4}>
                         <Form.Group>
                             <Form.Label>Activity Date &amp; Time</Form.Label>
-                            <Form.Control name="activity_date" value={activity_date} onChange={handleOutpostActivityFormChange} type="datetime-local"/>
+                            <Form.Control name="datetime" value={datetime} onChange={handleOutpostActivityFormChange} type="datetime-local"/>
                         </Form.Group>
                     </Col>
                 </Row>
                 <Form.Group>
                     <Form.Label>Activity Description</Form.Label>
-                    <Form.Control name="activity_description" value={activity_description} onChange={handleOutpostActivityFormChange} type="text"/>
+                    <Form.Control name="description" value={description} onChange={handleOutpostActivityFormChange} type="text"/>
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Outpost rating</Form.Label>
