@@ -5,10 +5,13 @@ import "./NewLeisureActivityForm.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
 
 const AsyncTypeahead = withAsync(Typeahead);
 function OutpostActivityForm(){
+    let navigate = useNavigate()
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
         activity_type: "Recycling",
@@ -34,7 +37,10 @@ function OutpostActivityForm(){
          value: ""
      })
 
-      function handleOutpostActivityFormChange(e){
+     const [modalIsVisible, setModalIsVisible] = useState(false)
+     const [failModalIsVisible, setFailModalIsVisible] = useState(false)
+
+    function handleOutpostActivityFormChange(e){
         const new_value = e.target.value;
         console.log(e.target.name)
         setOutpostActivityFormState({...outpostActivityForm, [e.target.name]: new_value })
@@ -51,7 +57,21 @@ function OutpostActivityForm(){
             body: JSON.stringify(outpostActivityForm)
         }
         fetch("http://localhost:9292/outpost-activities", configObj)
-        .then(res => console.log(res.json()))
+        .then(res => {
+            if(res.status === 200){
+                setModalIsVisible(true);
+            }else{
+                setFailModalIsVisible(true);
+            }
+        })
+    }
+    function handleModalRedirect(e){
+        const buttonType = e.target.name
+        if(buttonType === "new-activity" || buttonType === "try-again"){
+            navigate('/new-activity');
+        }else{
+            navigate('/map');
+        }
     }
 
     return(
@@ -142,6 +162,36 @@ function OutpostActivityForm(){
                 </Container>
             </Container>
         </Form>
+        <Modal
+        size="sm"
+        show={modalIsVisible}
+        onHide={()=>setModalIsVisible(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>You Successfully Posted Your Activity!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Add a new activity or check out the map?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button name="new-activity" onClick={handleModalRedirect}>New Activity</Button>
+                <Button name="map" onClick={handleModalRedirect}>Live Map</Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal
+        size="sm"
+        show={failModalIsVisible}
+        onHide={()=>setFailModalIsVisible(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Oops! Something went wrong</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Try again or go to live map?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button name="try-again" onClick={handleModalRedirect}>Try again</Button>
+                <Button name="map" onClick={handleModalRedirect}>Live Map</Button>
+            </Modal.Footer>
+        </Modal>
         </>
         
     )
