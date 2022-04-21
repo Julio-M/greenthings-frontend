@@ -27,7 +27,7 @@ function CardGroup ({outpost, leisure}) {
     .catch( error => console.log(error.message));
   }
 
-  const displayOutpostCards = outpost.map(card => <Col><Item card={card}/></Col>)
+  const displayOutpostCards = outpost.map(card => <Col><Item card={card} patchData={patchData}/></Col>)
   const displayLeisureCards = leisure.map(card => <Col><LeisureItem card={card}/></Col>)
 
     return (
