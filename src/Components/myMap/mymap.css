@@ -12,3 +12,11 @@
 	background-color: rgb(255, 255, 255);
 	padding: 1rem;
 }
+
+#tooltipimage{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+	height:30%;
+}
