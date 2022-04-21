@@ -10,7 +10,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import FormPage from './Components/FormPage';
 import Landing from './Components/Landing';
 import Map from './Components/Map';
-
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

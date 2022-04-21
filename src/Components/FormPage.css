@@ -10,3 +10,17 @@
     background-color: #F4A442;
     border: none;
 }
+
+.form-logo-img{
+    height: 70px;
+    width: 70px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.form-logo-img:hover{
+    height: 100px;
+    width: 100px;
+}
+.logo-container{
+    text-align: center;
+}
