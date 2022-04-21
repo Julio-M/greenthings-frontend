@@ -7,18 +7,22 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
+import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
+
+const AsyncTypeahead = withAsync(Typeahead);
 
 function NewLeisureActivityForm(){
-    const [isLoading,setIsLoading] = useState(0)
+
+    const [barLoading,setBarLoading] = useState(0)
 
     const [myImage, setMyImage] = useState("")
 
     const [leisureForm, setLeisureForm] = useState({
         avatar: "Deer",
         activity_type: "Picnic at the Park",
-        activity_location: "",
-        activity_description: "",
-        activity_date: Date.now(),
+        leisure_location_id: "",
+        description: "",
+        datetime: Date.now(),
         image:"",
         rating: 0,
         comment: ""
@@ -26,9 +30,9 @@ function NewLeisureActivityForm(){
 
       const {avatar, 
              activity_type, 
-             activity_location, 
-             activity_description, 
-             activity_date,
+             leisure_location_id, 
+             description, 
+             datetime,
              image,
              rating, 
              comment} = leisureForm
@@ -41,14 +45,14 @@ function NewLeisureActivityForm(){
 
       const handleImageSubmit = (e) =>{
         e.preventDefault()
-        console.log(isLoading)
+        console.log(barLoading)
         const formData = new FormData()
         formData.append("file", myImage)
         formData.append("upload_preset", "dyza3ykz")
 
         axios.post("https://api.cloudinary.com/v1_1/dimfaeuml/image/upload",formData,{
             onUploadProgress: progress => {
-                setIsLoading(Math.round(progress.loaded/progress.total*100))
+                setBarLoading(Math.round(progress.loaded/progress.total*100))
             }
         })
         .then(res=>setLeisureForm({...leisureForm, image:res.data.secure_url}))
@@ -57,21 +61,53 @@ function NewLeisureActivityForm(){
       }
 
       const handleUpload = (e) =>{
-          setIsLoading(0)
+          setBarLoading(0)
           const file = e.target.files[0]
           setMyImage(file)
       }
 
-      console.log("IMAGE",myImage)
+        console.log("IMAGE",myImage)
 
-      const now = isLoading;
+        const now = barLoading;
 
-    const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
+        const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
+
+         //  const [outpostsArray, setOutpostsArrayState] = useState([])
+        const [typeahead, setTypeaheadState] = useState({
+            isLoading: false,
+            options: [],
+            value: ""
+        })
+
+
+        const postData = () => {
+            //Make a POST request to create a new Outpost Activity
+            const configObj={
+                method: "POST", 
+                headers: {
+                    "Content-Type" : "application/json",
+                    "Accepts" : "application/json"
+                },
+                body: JSON.stringify(leisureForm)
+            }
+            fetch("http://localhost:9292/leisure-acivities", configObj)
+            .then(res => console.log(res))
+        }
+
+        console.log(leisureForm)
+
+        const handleOnSubmit = (e) => {
+            e.preventDefault()
+            postData()
+            console.log(leisureForm)
+        }
+
+
 
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
-        <Form className="new-leasure-form">
+        <Form onSubmit={handleOnSubmit} className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
                     <Form.Label>Avatar</Form.Label>
@@ -101,19 +137,48 @@ function NewLeisureActivityForm(){
                     <Col xs={12} md={4}>
                     <Form.Group>
                         <Form.Label>Activity Location</Form.Label>
-                        <Form.Control name="activity_location" value={activity_location} onChange={handleLeisureFormChange} type="text"/>
+                        <AsyncTypeahead
+                                id="activity-location-input" 
+                                onSearch={()=>{
+                                    setTypeaheadState({...typeahead, isLoading: true});
+                                    fetch("http://localhost:9292/leisure-locations")
+                                    .then(res => res.json())
+                                    .then(outposts => {
+                                        const nameArray = outposts.map(leisure => {
+                                            const outpostObj = {id: leisure.id, name: leisure.name}
+                                            return outpostObj
+                                            })
+                                        setTypeaheadState({...typeahead, isLoading: false, options: nameArray});
+                                    })
+                                }}
+                                labelKey={option => option.name} 
+                                isLoading={typeahead.isLoading}
+                                onChange={selected => {
+
+                                    if(selected.length !== 0){
+                                        setTypeaheadState({...typeahead, value: selected[0].name})
+                                        setLeisureForm({...leisureForm, leisure_location_id: selected[0].id})
+                                    }else{
+                                        setTypeaheadState({...typeahead, value: ""})
+                                        setLeisureForm({...leisureForm, leisure_location_id: ""})
+                                    }
+                                    console.log(selected)
+                                    
+                                }}
+                                
+                                options={typeahead.options}/>
                     </Form.Group>
                     </Col>
                     <Col xs={12} md={4}>
                         <Form.Group>
                             <Form.Label>Activity Date &amp; Time</Form.Label>
-                            <Form.Control name="activity_date" value={activity_date} onChange={handleLeisureFormChange} type="datetime-local"/>
+                            <Form.Control name="datetime" value={datetime} onChange={handleLeisureFormChange} type="datetime-local"/>
                         </Form.Group>
                     </Col>
                 </Row>
                 <Form.Group>
                     <Form.Label>Activity Description</Form.Label>
-                    <Form.Control name="activity_description" value={activity_description} onChange={handleLeisureFormChange} type="text"/>
+                    <Form.Control name="description" value={description} onChange={handleLeisureFormChange} type="text"/>
                     <Form.Text>Please limit text to no more than N characters.</Form.Text>
                 </Form.Group>
                 <Row>

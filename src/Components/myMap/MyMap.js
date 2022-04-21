@@ -4,6 +4,8 @@ import './mymap.css'
 
 export default function MyMap({outpost}) {
 
+  console.log("mAP",outpost)
+
   // console.log(outpost.ntaname)
   const [overlay,setOverlay] =useState(false)
   const [overCoordinates, setOverCoordinates] = useState([40.74253751019931, -73.99234182490424])
@@ -31,7 +33,7 @@ export default function MyMap({outpost}) {
     </Overlay>
   )
 
-  const displayMarker = outpost.map(out => <Marker key={out.id} onClick={handleClick} width={50} anchor={[parseFloat(out.latitude),parseFloat(out.longitude)]} color={'#168513'}  />)
+  const displayMarker = outpost.map(out => <Marker key={out.id} onClick={handleClick} width={50} anchor={[parseFloat(out.outpost.latitude),parseFloat(out.outpost.longitude)]} color={'#168513'}  />)
 
   return (
     <Map onClick={handleTooltip} height={1000} defaultCenter={overCoordinates} defaultZoom={14}>

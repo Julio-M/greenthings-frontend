@@ -9,7 +9,7 @@ function Map(){
 const [outpost, setOutpost] = useState([]);
 
 const getData = () => {
-    fetch(`https://data.cityofnewyork.us/resource/if26-z6xq.json`)
+    fetch(`http://localhost:9292/outpost-activities`)
     .then( res => res.json())
     .then( data => setOutpost(data))
     .catch( error => console.log(error.message))

@@ -51,7 +51,7 @@ function OutpostActivityForm(){
             body: JSON.stringify(outpostActivityForm)
         }
         fetch("http://localhost:9292/outpost-activities", configObj)
-        .then(res => console.log(res.json()))
+        .then(res => console.log(res))
     }
 
     return(
