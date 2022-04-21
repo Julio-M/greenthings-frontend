@@ -9,10 +9,12 @@ import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup'
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import { avatarOptions } from "./data/Avatars";
 
-const AsyncTypeahead = withAsync(Typeahead);
-function OutpostActivityForm(){
+
+function OutpostActivityForm( { mappedRadioButtons }){
+    const AsyncTypeahead = withAsync(Typeahead);
     let navigate = useNavigate()
 
     const [checked, setChecked] = useState(false);
@@ -80,38 +82,6 @@ function OutpostActivityForm(){
         }
     }
 
-    const avatarOptions = [
-        {
-            id: 1, 
-            name: "Deer",
-            src: "./images/deer.png"
-        },
-        {
-            id: 1, 
-            name: "Raccoon",
-            src: "./images/raccoon.png"
-        },
-        {
-            id: 1, 
-            name: "Pigeon",
-            src: "./images/pigeon.png"
-        },
-        {
-            id: 1, 
-            name: "Falcon",
-            src: "./images/falcon.png"
-        },
-        {
-            id: 1, 
-            name: "Coyote",
-            src: "./images/coyote.png"
-        },
-        {
-            id: 1, 
-            name: "Rat",
-            src: "./images/rat.png"
-        }
-    ];
 
     function handleAvatarChange(e){
         setChecked(e.currentTarget.checked)
@@ -121,21 +91,6 @@ function OutpostActivityForm(){
         setCheckboxValue(arr[1])
         setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
     }
-
-    const mappedRadioButtons = avatarOptions.map((avatar)=> {
-        return(
-            <ToggleButton
-                key={avatar.id}
-                id={avatar.name}
-                className="avatar-radio"
-                type="checkbox"
-                name={avatar.name}
-                value={avatar.name}>
-                <img className="form-logo-img" src={require(`${avatar.src}`)} alt={avatar.name}/>
-            </ToggleButton>
-        )
-
-        });
 
     return(
         <>
