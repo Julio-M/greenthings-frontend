@@ -15,7 +15,7 @@ function Landing(){
                 <img id="landing-logo" src={require("./images/logo.png")} alt="logo"/>
                 <h2 id="landing-subtext" style={{textAlign: "center"}}>View and participate in sustainable activities around New York City!</h2>
                 <div id="landing-description">
-                    <p>GreenThings is an app that encourages you to anonyously view and post about your green activities around New York City so that you can encourage others to do the same! Going to play frisbee at Prospect Park? Did you deposit your compostable food waste at a composting outpost in Astoria? Choose and avatar and inspire others to spend time outside or engage in sustainably conscious activites.</p>
+                    <p>ActiveCritters is an app that encourages you to anonyously view and post about your green activities around New York City so that you can encourage others to do the same! Going to play frisbee at Prospect Park? Did you deposit your compostable food waste at a composting outpost in Astoria? Choose and avatar and inspire others to spend time outside or engage in sustainably conscious activites.</p>
                 </div>
                 
             </div>

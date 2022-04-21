@@ -19,7 +19,7 @@ function NavBar(){
                 <Nav className="me-auto">
                     <Nav.Link style={{color: "white"}} href="/">Home</Nav.Link>
                     <Nav.Link style={{color: "white"}} href="map">Live Map</Nav.Link>
-                    <Nav.Link style={{color: "white"}} href="new-activity">Add New Activity</Nav.Link>
+                    <Nav.Link style={{color: "white"}} href="new-activity">Post Activity</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
