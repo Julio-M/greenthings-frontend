@@ -8,10 +8,18 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
+import ToggleButton from 'react-bootstrap/ToggleButton';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
+import { avatarOptions } from "./data/Avatars";
 
-const AsyncTypeahead = withAsync(Typeahead);
-function OutpostActivityForm(){
+
+function OutpostActivityForm( { mappedRadioButtons }){
+    const AsyncTypeahead = withAsync(Typeahead);
     let navigate = useNavigate()
+
+    const [checked, setChecked] = useState(false);
+    const [radioValue, setRadioValue] = useState('');
+    const [checkboxValue, setCheckboxValue] = useState('');
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
         activity_type: "Recycling",
@@ -74,32 +82,27 @@ function OutpostActivityForm(){
         }
     }
 
+
+    function handleAvatarChange(e){
+        setChecked(e.currentTarget.checked)
+    }
+
+    function handleCheckBoxChange(arr){
+        setCheckboxValue(arr[1])
+        setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
+    }
+
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Outpost Activity</h2>
-        <div className="logo-container">
-            <img className="form-logo-img" src={require("./images/raccoon.png")} alt="raccoon"/>
-            <img className="form-logo-img" src={require("./images/pigeon.png")} alt="pigeon"/>
-            <img className="form-logo-img" src={require("./images/deer.png")} alt="deer"/>
-            <img className="form-logo-img" src={require("./images/falcon.png")} alt="falcon"/>
-            <img className="form-logo-img" src={require("./images/coyote.png")} alt="coyote"/>
-            <img className="form-logo-img" src={require("./images/rat.png")} alt="rat"/>
-            <img className="form-logo-img" src={require("./images/squirrel.png")} alt="squirrel"/>
-        </div>
         
         <Form onSubmit={handleOutpostActivitySubmit} autoComplete="off" className="new-leasure-form">
             <Container fluid>
-                <Form.Group>
-                    <Form.Label>Avatar</Form.Label>
-                    <Form.Select name="avatar" value={avatar} onChange={handleOutpostActivityFormChange}>
-                        <option>Deer</option>
-                        <option>Squirrel</option>
-                        <option>Falcon</option>
-                        <option>Pigeon</option>
-                        <option>Rat</option>
-                        <option>Coyote</option>
-                    </Form.Select>
-                </Form.Group>
+                <Container className="avatar-wrap">
+                    <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
+                        {mappedRadioButtons}
+                    </ToggleButtonGroup>
+                </Container>
                 <Row>
                     <Col xs={12} md={4}>
                         <Form.Group>

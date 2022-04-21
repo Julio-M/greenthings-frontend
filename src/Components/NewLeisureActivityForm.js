@@ -8,14 +8,19 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
+import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
-const AsyncTypeahead = withAsync(Typeahead);
 
-function NewLeisureActivityForm(){
+
+
+function NewLeisureActivityForm({ mappedRadioButtons }){
+    const AsyncTypeahead = withAsync(Typeahead);
 
     const [barLoading,setBarLoading] = useState(0)
 
     const [myImage, setMyImage] = useState("")
+
+    const [checkboxValue, setCheckboxValue] = useState('');
 
     const [leisureForm, setLeisureForm] = useState({
         avatar: "Deer",
@@ -27,6 +32,10 @@ function NewLeisureActivityForm(){
         rating: 0,
         comment: ""
       })
+      function handleCheckBoxChange(arr){
+        setCheckboxValue(arr[1])
+        setLeisureForm({...leisureForm, avatar: arr[1]})
+    }
 
       const {avatar, 
              activity_type, 
@@ -109,31 +118,13 @@ function NewLeisureActivityForm(){
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
 
         <Form onSubmit={handleOnSubmit} className="new-leasure-form"/>
-
-        <div className="logo-container">
-            <img className="form-logo-img" src={require("./images/raccoon.png")} alt="raccoon"/>
-            <img className="form-logo-img" src={require("./images/pigeon.png")} alt="pigeon"/>
-            <img className="form-logo-img" src={require("./images/deer.png")} alt="deer"/>
-            <img className="form-logo-img" src={require("./images/falcon.png")} alt="falcon"/>
-            <img className="form-logo-img" src={require("./images/coyote.png")} alt="coyote"/>
-            <img className="form-logo-img" src={require("./images/rat.png")} alt="rat"/>
-            <img className="form-logo-img" src={require("./images/squirrel.png")} alt="squirrel"/>
-        </div>
-        
         <Form className="new-leasure-form">
             <Container fluid>
-                <Form.Group>
-                    <Form.Label>Avatar</Form.Label>
-                    <Form.Select name="avatar" value={avatar} onChange={handleLeisureFormChange}>
-                        <option>Deer</option>
-                        <option>Squirrel</option>
-                        <option>Falcon</option>
-                        <option>Pigeon</option>
-                        <option>Rat</option>
-                        <option>Coyote</option>
-                        <option>Raccoon</option>
-                    </Form.Select>
-                </Form.Group>
+                <Container className="avatar-wrap">
+                    <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
+                        {mappedRadioButtons}
+                    </ToggleButtonGroup>
+                </Container>
                 <Row>
                     <Col xs={12} md={4}>
                     <Form.Group>
