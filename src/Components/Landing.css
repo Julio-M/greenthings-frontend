@@ -1,13 +1,46 @@
+#landing-title{
+    text-align: center;
+    font-size: 200px;
+    font-family: "Moo Lah Lah", cursive;
+    color: #F4A442;
+}
+#title-span{
+    color: #125C13;
+}
+#landing-subtext{
+    margin: 30px 30px 50px 30px;
+}
+#landing-description{
+    font-size: 25px;
+    margin: 10px 60px;
+    text-align: center;
+}
+#landing-logo{
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
 .nav-card{
     text-align: center;
     border: black 2px solid;
     border-radius: 5px;
     padding: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
     margin-top: 20px;
     margin-bottom: 20px;
+    height: 400px;
+    position: relative;
+}
+.absolute-centered{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+
 }
 #map-nav-card{
-    position: relative
+    position: relative;
 }
 #map-nav-card::before{
     position: absolute;
@@ -48,6 +81,10 @@
 
 .rel-text{
     position: relative;
+}
+.re-text-header{
+    position: relative;
+    font-weight: 600;
 }
 #activity-nav-card{
 
