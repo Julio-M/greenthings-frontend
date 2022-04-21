@@ -107,7 +107,20 @@ function NewLeisureActivityForm(){
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
-        <Form onSubmit={handleOnSubmit} className="new-leasure-form">
+
+        <Form onSubmit={handleOnSubmit} className="new-leasure-form"/>
+
+        <div className="logo-container">
+            <img className="form-logo-img" src={require("./images/raccoon.png")} alt="raccoon"/>
+            <img className="form-logo-img" src={require("./images/pigeon.png")} alt="pigeon"/>
+            <img className="form-logo-img" src={require("./images/deer.png")} alt="deer"/>
+            <img className="form-logo-img" src={require("./images/falcon.png")} alt="falcon"/>
+            <img className="form-logo-img" src={require("./images/coyote.png")} alt="coyote"/>
+            <img className="form-logo-img" src={require("./images/rat.png")} alt="rat"/>
+            <img className="form-logo-img" src={require("./images/squirrel.png")} alt="squirrel"/>
+        </div>
+        
+        <Form className="new-leasure-form">
             <Container fluid>
                 <Form.Group>
                     <Form.Label>Avatar</Form.Label>
@@ -215,7 +228,6 @@ function NewLeisureActivityForm(){
             </Container>
         </Form>
         </>
-        
     )
 }
 
