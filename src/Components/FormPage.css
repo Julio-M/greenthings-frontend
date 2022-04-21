@@ -16,10 +16,27 @@
     width: 70px;
     margin-left: 20px;
     margin-right: 20px;
+    transition: transform .2s;
 }
 .form-logo-img:hover{
-    transform: scale(1.5)
+    transform: scale(1.5);
 }
+.form-logo-img:focus{
+    transform: scale(1.5);
+}
+
 .logo-container{
+    text-align: center;
+}
+div.avatar-group{
+    text-align: center;
+    margin-left: auto;
+}
+.avatar-radio{
+    margin: 10px;
+    background-color: transparent;
+    border-color: #E8E1D9
+}
+.avatar-wrap{
     text-align: center;
 }
