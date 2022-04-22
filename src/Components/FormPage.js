@@ -35,7 +35,7 @@ function FormPage(){
             <h1 id="form-header-text" style={{textAlign: "center", padding: "30px 40px"}}>C'mon now don't be shy! Post an activity.</h1>
 
             <Container className="form-choice-btn">
-                <p>Toggle between outpost and leisure activities.</p>
+                <p style={{fontWeight: "bold"}}>Toggle between outpost and leisure activities.</p>
                 <Button  className="choice-btn" name="outpost" onClick={handleFormAppear}>Outpost Form</Button>
                 <Button  className="choice-btn" name="leisure" onClick={handleFormAppear}>Leisure Form</Button>
             </Container>
