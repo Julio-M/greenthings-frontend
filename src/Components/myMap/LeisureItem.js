@@ -55,7 +55,7 @@ function LeisureItem ({card,patchLeisureData,deleteDataLeisure}) {
     <>
        <Card className="mycard" id="leisureCard">
         <Card.Img onClick={handleShow} variant="top" src={image?image:leisure_location.default_image} />
-        <Card.Body>
+        <Card.Body className="cardBody">
           <Card.Title>{logo}</Card.Title>
           <Card.Text>Activity: {activity_type}</Card.Text>
           <Card.Text>Rating: {rating}/10</Card.Text>

@@ -62,7 +62,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
         <>
            <Card className="mycard" id="outpostCard">
             <Card.Img onClick={handleShow} variant="top" src={image?image:defaultImage} />
-            <Card.Body>
+            <Card.Body className="cardBody">
               <Card.Title>{logo}</Card.Title>
               <Card.Text>Activity: {activity_type}</Card.Text>
               <Card.Text>Rating: {rating}/10</Card.Text>

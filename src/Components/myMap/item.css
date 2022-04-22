@@ -1,5 +1,14 @@
 .mycard{
-  margin-bottom: 1.4rem;
+  /* margin-bottom: 1.4rem; */
+  height: 100%;
+}
+
+.row-cols-md-2>* {
+  margin-bottom: 1rem;
+}
+
+.cardBody{
+  height: 100%;
 }
 
 #leisureCard{
