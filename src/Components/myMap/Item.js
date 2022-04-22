@@ -11,6 +11,8 @@ function Item ({card, patchData, deleteDataOutpost}) {
 
   const deleteOutUrl = `http://localhost:9292/outposts-activity/`
 
+  const defaultImage = `https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg"`
+
   const {avatar,activity_type,datetime,description, image,comment, outpost,rating} = card
 
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
     return (
         <>
            <Card className="mycard" id="outpostCard">
-            <Card.Img onClick={handleShow} variant="top" src={image?image:outpost.default_image} />
+            <Card.Img onClick={handleShow} variant="top" src={image?image:defaultImage} />
             <Card.Body>
               <Card.Title>{logo}</Card.Title>
               <Card.Text>Activity: {activity_type}</Card.Text>
@@ -75,7 +77,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
         <Modal.Header closeButton>
           <Modal.Title>{activity_type}</Modal.Title>
         </Modal.Header>
-        <img src="https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg"/>
+        <img src={image?image:defaultImage}/>
         <Modal.Body>
           <small>{logo} * {rating}/10</small> 
           <h5>Description</h5>
