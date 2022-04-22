@@ -4,9 +4,11 @@ import './item.css'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { useNavigate } from "react-router-dom"; // v6
-import Form from 'react-bootstrap/Form';
+import EditModal from "./EditModal";
 
 function Item ({card, patchData}) {
+
+  const {avatar,activity_type,datetime,description, image,comment, outpost,rating} = card
 
   const navigate = useNavigate();
 
@@ -19,10 +21,6 @@ function Item ({card, patchData}) {
   const handleEditClose = () => setEditShow(false);
   const handleEditShow = () => setEditShow(true);
 
-  console.log(card)
-  const {avatar,image, activity_type, description, comment, outpost,rating} = card
-
-
     return (
         <>
            <Card className="mycard" id="outpostCard">
@@ -32,7 +30,8 @@ function Item ({card, patchData}) {
               <Card.Text>Activity: {activity_type}</Card.Text>
               <Card.Text>Rating: {rating}/10</Card.Text>
               <Card.Text>{outpost.name}</Card.Text>
-              <Button onClick={handleEditShow} variant="outline-secondary">Edit</Button>
+              <Button id='editbtn' onClick={handleEditShow} variant="outline-primary">Edit</Button>
+              <Button id='dltbtn' onClick={handleEditShow} variant="outline-secondary">Delete</Button>
             </Card.Body>
           </Card> 
 
@@ -54,43 +53,11 @@ function Item ({card, patchData}) {
       </Modal>
       {/* Card Modal */}
 
-      {/* Form edit Modal */}
-      <Modal show={editShow} onHide={handleEditClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-          <Form.Group>
-              <Form.Label>Avatar</Form.Label>
-              <Form.Select name="avatar" value={avatar}>
-                  <option>Deer</option>
-                  <option>Squirrel</option>
-                  <option>Falcon</option>
-                  <option>Pigeon</option>
-                  <option>Rat</option>
-                  <option>Coyote</option>
-              </Form.Select>
-            </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleEditClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleEditClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-      {/* Form edit Modal */}
+        {/* Form edit Modal */}
+
+          <EditModal handleEditClose={handleEditClose} handleEditShow={handleEditShow} editShow={editShow} card={card} patchData={patchData}/>
+
+        {/* Form edit Modal */}
         </>
     );
 }

@@ -24,10 +24,29 @@ function Map(){
         getData(leisureUrl,setLeisure)
     },[])
 
+    const patchData= (url,id,body)=> {
+        fetch(`${url}+${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+        .then( res => res.json())
+        .then( data => setOutpost(outpost.map(out=>{
+            if(out.id===data.id) return data
+            return out
+          })))
+        .catch( error => console.log(error.message));
+      }
+
+      console.log('The outpost', outpost)
+
     return(
         <>
         <Container fluid >
-            <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure}/></div>
+            <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData}/></div>
             <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
         </Container>
         </>

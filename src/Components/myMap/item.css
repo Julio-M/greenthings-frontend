@@ -11,3 +11,8 @@
   border-color: green;
   border-width: 2px;
 }
+
+#dltbtn{
+  margin-left: 1rem;
+  color: red;
+}
