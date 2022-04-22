@@ -1,4 +1,8 @@
 #global-nav{
+    background-color: transparent;
+    border: 1px solid #3E7C17;
+}
+#global-nav:hover{
     background-color: #3E7C17;
 }
 .menu-link{
