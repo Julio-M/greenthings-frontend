@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import { useNavigate } from "react-router-dom"; // v6
 import EditModal from "./EditModal";
-import deer from "../images/deer.png"
+
 
 function Item ({card, patchData, deleteDataOutpost}) {
 
