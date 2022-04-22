@@ -8,16 +8,36 @@ import Modal from 'react-bootstrap/Modal'
 function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData}) {
 
   const patchOutpostUrl = `http://localhost:9292/outpost-activity/`
+  const [location,setLocation]= useState([])
+
+  const locationFetch = () => {
+    fetch(`http://localhost:9292/outposts`)
+    .then( res => res.json())
+    .then( data => setLocation(data))
+    .catch( error => console.log(error.message));
+  }
+
+  useEffect( () => {
+    locationFetch()
+  },[])
 
 
   const [editField, setEditField] = useState({})
 
   const handlePatch = (e) => {
-    console.log(e.target.value)
+    const selectedIndex = e.target.options.selectedIndex;
+    const mykey = e.target.options[selectedIndex].getAttribute('data-key')
     const name = e.target.name
     let value = e.target.value
-    setEditField({...editField,[name]:value})
+    if(value && !mykey){
+      setEditField({...editField,[name]:value})
+    }else if(value&&mykey){
+      setEditField({...editField,[name]:mykey})
+    }
+    
   }
+
+  const locationDisplay = location.map(loc => <option data-key={loc.id} key={loc.id}>{loc.name}</option>)
 
 
   // useEffect( () => {
@@ -36,13 +56,15 @@ function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData})
   }
 
 
+  console.log(location)
+
   console.log(editField,"id",card.id)
 
     return (
         <>
       <Modal show={editShow} onHide={handleEditClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -64,14 +86,22 @@ function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData})
                     <option>Composting</option>
                     <option>Gardening</option>
               </Form.Select>
+              <Form.Label>Location</Form.Label>
+              <Form.Select name="outpost_id" onChange={handlePatch}>
+                    {locationDisplay}
+              </Form.Select>
             </Form.Group>
-            <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Upload Image</Form.Label>
-                        <Form.Control type="file" name="image" onChange={handlePatch} />
-                  </Form.Group>
                   <Form.Group>
                     <Form.Label>Activity Description</Form.Label>
                     <Form.Control name="description" onChange={handlePatch} type="text" />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Comments</Form.Label>
+                    <Form.Control name="comment" onChange={handlePatch} type="text" />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Rating</Form.Label>
+                    <Form.Control name="rating" onChange={handlePatch} type="number"/>
                 </Form.Group>
                 <Button variant="primary" type="submit">
                   Save Changes
