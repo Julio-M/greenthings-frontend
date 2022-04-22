@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom"; // v6
 import EditModal from "./EditModal";
 import deer from "../images/deer.png"
 
-function Item ({card, patchData}) {
+function Item ({card, patchData, deleteDataOutpost}) {
+
+  const deleteOutUrl = `http://localhost:9292/outposts-activity/`
 
   const {avatar,activity_type,datetime,description, image,comment, outpost,rating} = card
 
@@ -49,6 +51,10 @@ function Item ({card, patchData}) {
       // code block
   }
 
+  const handleDelete = () => {
+    deleteDataOutpost(deleteOutUrl,card.id)
+  }
+
 
     return (
         <>
@@ -60,7 +66,7 @@ function Item ({card, patchData}) {
               <Card.Text>Rating: {rating}/10</Card.Text>
               <Card.Text>{outpost.name}</Card.Text>
               <Button id='editbtn' onClick={handleEditShow} variant="outline-primary">Edit</Button>
-              <Button id='dltbtn' onClick={handleEditShow} variant="outline-secondary">Delete</Button>
+              <Button id='dltbtn' onClick={handleDelete} variant="outline-secondary">Delete</Button>
             </Card.Body>
           </Card> 
 

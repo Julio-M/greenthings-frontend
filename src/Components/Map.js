@@ -41,12 +41,20 @@ function Map(){
         .catch( error => console.log(error.message));
       }
 
+      const deleteDataOutpost = (url,outid) => {
+        fetch(`${url}+${outid}`, {
+            method: "DELETE"
+        })
+        .then(setOutpost(outpost.filter(out=>outid!==out.id)))
+        .catch( error => console.log(error.message));
+      }
+
       console.log('The outpost', outpost)
 
     return(
         <>
         <Container fluid >
-            <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData}/></div>
+            <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData} deleteDataOutpost={deleteDataOutpost}/></div>
             <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
         </Container>
         </>

@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 
 function LeisureItem ({card}) {
 
-  const {avatar, activity_type, description, comment, leisure_location} = card
+  const {avatar, image,activity_type, description, comment, leisure_location} = card
 
   let logo;
   switch(avatar) {
@@ -37,7 +37,7 @@ function LeisureItem ({card}) {
     return (
         <>
            <Card className="mycard" id="leisureCard">
-            <Card.Img variant="top" src="https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg" />
+            <Card.Img variant="top" src={image}/>
             <Card.Body>
               <Card.Title>{logo}</Card.Title>
               <Card.Text>{activity_type}</Card.Text>
