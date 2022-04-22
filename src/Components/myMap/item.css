@@ -1,3 +1,18 @@
 .mycard{
   margin-bottom: 1.4rem;
 }
+
+#leisureCard{
+  border-color: blue;
+  border-width: 2px;
+}
+
+#outpostCard{
+  border-color: green;
+  border-width: 2px;
+}
+
+#dltbtn{
+  margin-left: 1rem;
+  color: red;
+}

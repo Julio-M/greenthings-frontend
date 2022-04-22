@@ -1,7 +1,9 @@
 .mapCol{
   margin-left: 50%;
   width: 50%;
-  position: fixed;
+  height: 100%;
+  z-index: 1;
+  top: 0;
 }
 
 .cardCol{

@@ -8,13 +8,19 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
 
-
+const AsyncTypeahead = withAsync(Typeahead);
 
 function NewLeisureActivityForm({ mappedRadioButtons }){
-    const AsyncTypeahead = withAsync(Typeahead);
+
+    let navigate = useNavigate()
+
+    const [modalIsVisible, setModalIsVisible] = useState(false)
+    const [failModalIsVisible, setFailModalIsVisible] = useState(false)
 
     const [barLoading,setBarLoading] = useState(0)
 
@@ -100,25 +106,37 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                 body: JSON.stringify(leisureForm)
             }
             fetch("http://localhost:9292/leisure-acivities", configObj)
-            .then(res => console.log(res))
+            .then(res => {
+                if(res.status === 200){
+                setModalIsVisible(true);
+            }else{
+                setFailModalIsVisible(true);
+            }
+        })
         }
 
+        function handleModalRedirect(e){
+            const buttonType = e.target.name
+            if(buttonType === "new-activity" || buttonType === "try-again"){
+                navigate('/new-activity');
+            }else{
+                navigate('/map');
+            }
+        }
         console.log(leisureForm)
 
         const handleOnSubmit = (e) => {
+            console.log('clicked')
             e.preventDefault()
             postData()
-            console.log(leisureForm)
         }
-
 
 
     return(
         <>
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
 
-        <Form onSubmit={handleOnSubmit} className="new-leasure-form"/>
-        <Form className="new-leasure-form">
+        <Form onSubmit={handleOnSubmit} className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
@@ -218,6 +236,36 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                 </Container>
             </Container>
         </Form>
+        <Modal
+        size="sm"
+        show={modalIsVisible}
+        onHide={()=>setModalIsVisible(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>You Successfully Posted Your Activity!</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Add a new activity or check out the map?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button name="new-activity" onClick={handleModalRedirect}>New Activity</Button>
+                <Button name="map" onClick={handleModalRedirect}>Live Map</Button>
+            </Modal.Footer>
+        </Modal>
+        <Modal
+        size="sm"
+        show={failModalIsVisible}
+        onHide={()=>setFailModalIsVisible(false)}>
+            <Modal.Header closeButton>
+                <Modal.Title>Oops! Something went wrong</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <p>Try again or go to live map?</p>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button name="try-again" onClick={handleModalRedirect}>Try again</Button>
+                <Button name="map" onClick={handleModalRedirect}>Live Map</Button>
+            </Modal.Footer>
+        </Modal>
         </>
     )
 }
