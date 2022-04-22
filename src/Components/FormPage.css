@@ -40,3 +40,7 @@ div.avatar-group{
 .avatar-wrap{
     text-align: center;
 }
+
+#form-header-text{
+    margin-top: 50px;
+}

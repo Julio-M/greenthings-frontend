@@ -77,16 +77,17 @@ function Map(){
 
       console.log('The outpost', outpost)
 
+
     return(
         <>
         <Container fluid >
-            <main>
-                <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData} deleteDataOutpost={deleteDataOutpost} patchLeisureData={patchLeisureData}deleteDataLeisure={deleteDataLeisure}/></div>
-            </main>
-            <aside>
-                <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
-            </aside>
-        </Container>
+                    <main>
+                        <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData} deleteDataOutpost={deleteDataOutpost} patchLeisureData={patchLeisureData}deleteDataLeisure={deleteDataLeisure}/></div>
+                    </main>
+                    <aside>
+                        <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
+                    </aside>
+                </Container>
         </>
     )
 }
