@@ -10,6 +10,7 @@ function CardGroup ({outpost, leisure, patchData}) {
 
   const patchLeisureUrl = `http://localhost:9292/leisure-activity/`
 
+  
   const displayOutpostCards = outpost.map(card => <Col><Item card={card} patchData={patchData}/></Col>)
   const displayLeisureCards = leisure.map(card => <Col><LeisureItem card={card}/></Col>)
 
