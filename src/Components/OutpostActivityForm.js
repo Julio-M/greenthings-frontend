@@ -126,11 +126,12 @@ function OutpostActivityForm( { mappedRadioButtons }){
 
     return(
         <>
-        <h2 style={{textAlign: "center"}}>New Outpost Activity</h2>
+        <h2 id="outpost-title" style={{textAlign: "center"}}>New <span style={{color: "brown"}}>Outpost</span> Activity</h2>
         
         <Form onSubmit={handleOutpostActivitySubmit} autoComplete="off" className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
+                    <h4 style={{fontWeight: "bold"}}>--Choose an Avatar--</h4>
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
                         {mappedRadioButtons}
                     </ToggleButtonGroup>
@@ -220,7 +221,7 @@ function OutpostActivityForm( { mappedRadioButtons }){
                     </Col>
                 </Row>
                     <Form.Group>
-                        <Form.Label>Comment</Form.Label>
+                        <Form.Label>Leave a Comment About the Outpost Location!</Form.Label>
                         <Form.Control id="ocb" name="comment" value={comment} onChange={handleOutpostActivityFormChange} type="text"/>
                     </Form.Group>
                 <Container style={{textAlign: "center"}}>

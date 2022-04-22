@@ -134,11 +134,12 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
 
     return(
         <>
-        <h2 id="leisure-title" style={{textAlign: "center"}}>New Leisure Activity</h2>
+        <h2 id="leisure-title" style={{textAlign: "center"}}>New <span style={{color: "lightblue"}}>Leisure</span> Activity</h2>
 
         <Form onSubmit={handleOnSubmit} className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
+                    <h4 style={{fontWeight: "bold"}}>--Choose an Avatar--</h4>
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
                         {mappedRadioButtons}
                     </ToggleButtonGroup>
@@ -232,7 +233,7 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                 
                 </Row>
                 <Form.Group>
-                    <Form.Label>Comment</Form.Label>
+                    <Form.Label>Leave a Comment About the Location!</Form.Label>
                     <Form.Control id="comment-box" name="comment" value={comment} onChange={handleLeisureFormChange} type="text"/>
                 </Form.Group>
 
