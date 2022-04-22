@@ -1,9 +1,19 @@
 .form-choice-btn{
     text-Align: center;
+    background-color:rgba(0,0,0,0.3);
+    padding: 10px;
+    color: white;
+    width: 450px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+#form-header-text{
+    font-family: 'Bangers', cursive;
 }
 .form-choice-btn p {
     margin-bottom: 0px;
 }
+
 
 .choice-btn{
     margin: 5px 40px 20px 40px;
@@ -39,4 +49,8 @@ div.avatar-group{
 }
 .avatar-wrap{
     text-align: center;
+}
+
+label {
+    font-weight: bold;
 }
