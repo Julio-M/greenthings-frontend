@@ -13,10 +13,9 @@ import { useNavigate } from 'react-router-dom';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
 
-
+const AsyncTypeahead = withAsync(Typeahead);
 
 function NewLeisureActivityForm({ mappedRadioButtons }){
-    const AsyncTypeahead = withAsync(Typeahead);
 
     let navigate = useNavigate()
 
@@ -137,8 +136,7 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
         <>
         <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
 
-        <Form onSubmit={handleOnSubmit} className="new-leasure-form"/>
-        <Form className="new-leasure-form">
+        <Form onSubmit={handleOnSubmit} className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>

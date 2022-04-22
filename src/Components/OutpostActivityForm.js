@@ -14,12 +14,13 @@ import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { avatarOptions } from "./data/Avatars";
 
+const AsyncTypeahead = withAsync(Typeahead);
 
 function OutpostActivityForm( { mappedRadioButtons }){
     const [barLoading,setBarLoading] = useState(0)
 
     const [myImage, setMyImage] = useState("")
-    const AsyncTypeahead = withAsync(Typeahead);
+    
     let navigate = useNavigate()
 
     const [checked, setChecked] = useState(false);
@@ -31,6 +32,7 @@ function OutpostActivityForm( { mappedRadioButtons }){
         outpost_id: 0,
         description: "",
         datetime: "",
+        image:"",
         rating: 0,
         comment: ""
       })
@@ -116,10 +118,11 @@ function OutpostActivityForm( { mappedRadioButtons }){
         const now = barLoading;
 
         const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
-    function handleCheckBoxChange(arr){
-        setCheckboxValue(arr[1])
-        setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
-    }
+        
+        function handleCheckBoxChange(arr){
+            setCheckboxValue(arr[1])
+            setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
+        }
 
     return(
         <>
