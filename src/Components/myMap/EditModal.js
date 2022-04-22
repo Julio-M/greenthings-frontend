@@ -10,6 +10,7 @@ function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData})
   const patchOutpostUrl = `http://localhost:9292/outpost-activity/`
   const [location,setLocation]= useState([])
 
+
   const locationFetch = () => {
     fetch(`http://localhost:9292/outposts`)
     .then( res => res.json())
@@ -25,8 +26,11 @@ function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData})
   const [editField, setEditField] = useState({})
 
   const handlePatch = (e) => {
-    const selectedIndex = e.target.options.selectedIndex;
-    const mykey = e.target.options[selectedIndex].getAttribute('data-key')
+    let mykey;
+    if(e.target.options){
+      let selectedIndex =e.target.options.selectedIndex
+      mykey = e.target.options[selectedIndex].getAttribute('data-key')
+    }
     const name = e.target.name
     let value = e.target.value
     if(value && !mykey){
@@ -93,11 +97,11 @@ function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData})
             </Form.Group>
                   <Form.Group>
                     <Form.Label>Activity Description</Form.Label>
-                    <Form.Control name="description" onChange={handlePatch} type="text" />
+                    <Form.Control data-key='0' name="description" onChange={handlePatch} type="text" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Comments</Form.Label>
-                    <Form.Control name="comment" onChange={handlePatch} type="text" />
+                    <Form.Control data-key='0' name="comment" onChange={handlePatch} type="text" />
                 </Form.Group>
                 <Form.Group>
                     <Form.Label>Rating</Form.Label>
