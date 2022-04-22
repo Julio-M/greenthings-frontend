@@ -8,9 +8,17 @@ import Col from 'react-bootstrap/Col';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from 'react-router-dom';
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
+import axios from 'axios'
+import ProgressBar from 'react-bootstrap/ProgressBar'
+
 
 const AsyncTypeahead = withAsync(Typeahead);
 function OutpostActivityForm(){
+
+    const [barLoading,setBarLoading] = useState(0)
+
+    const [myImage, setMyImage] = useState("")
+
     let navigate = useNavigate()
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
@@ -26,7 +34,8 @@ function OutpostActivityForm(){
              activity_type, 
              outpost_id, 
              description,
-             datetime, 
+             datetime,
+             image, 
              rating,
              comment} = outpostActivityForm
      
@@ -73,6 +82,35 @@ function OutpostActivityForm(){
             navigate('/map');
         }
     }
+
+    const handleImageSubmit = (e) =>{
+        e.preventDefault()
+        console.log(barLoading)
+        const formData = new FormData()
+        formData.append("file", myImage)
+        formData.append("upload_preset", "dyza3ykz")
+
+        axios.post("https://api.cloudinary.com/v1_1/dimfaeuml/image/upload",formData,{
+            onUploadProgress: progress => {
+                setBarLoading(Math.round(progress.loaded/progress.total*100))
+            }
+        })
+        .then(res=>setOutpostActivityFormState({...outpostActivityForm, image:res.data.secure_url}))
+        // .then(()=>setIsLoading(0))
+
+      }
+
+      const handleUpload = (e) =>{
+          setBarLoading(0)
+          const file = e.target.files[0]
+          setMyImage(file)
+      }
+
+        console.log("IMAGE",myImage)
+
+        const now = barLoading;
+
+        const progressInstance = <ProgressBar now={now} label={`${now}%`} />;
 
     return(
         <>
@@ -157,10 +195,28 @@ function OutpostActivityForm(){
                     <Form.Label>Activity Description</Form.Label>
                     <Form.Control name="description" value={description} onChange={handleOutpostActivityFormChange} type="text"/>
                 </Form.Group>
+                <Row>
+                <Col xs={12} md={6}>
                 <Form.Group>
                     <Form.Label>Outpost rating</Form.Label>
                     <Form.Control id="outpost-comment-box" name="rating" value={rating} onChange={handleOutpostActivityFormChange} type="number"/>
                 </Form.Group>
+                </Col>
+                <Col xs={12} md={6}> 
+                <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Label>Upload Image</Form.Label>
+                        <Form.Control type="file" onChange={handleUpload}/>
+                        <Row>
+                            <Col xs={12} md={3}>
+                            <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
+                            </Col>
+                            <Col xs={12} md={8}>
+                            {progressInstance}
+                            </Col>
+                        </Row>
+                    </Form.Group>
+                    </Col>
+                    </Row>
                 <Form.Group>
                     <Form.Label>Comment</Form.Label>
                     <Form.Control id="outpost-comment-box" name="comment" value={comment} onChange={handleOutpostActivityFormChange} type="text"/>
