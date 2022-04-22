@@ -12,5 +12,12 @@
 }
 
 #comment-box{
-    height: 300px;
+    height: 200px;
+}
+#leisure-title{
+    font-family: 'Bangers', cursive;
+    font-size: 40px;
+}
+#description-box{
+    height: 150px;
 }

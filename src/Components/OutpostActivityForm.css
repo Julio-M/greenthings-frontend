@@ -16,6 +16,14 @@
     margin-bottom: 10px;
 }
 
-#outpost-comment-box{
-    height: 300px;
+#ocb{
+    height: 200px;
+}
+#odb{
+    height: 150px;
+}
+
+#outpost-title{
+    font-family: "Bangers", cursive;
+    font-size: 40px;
 }

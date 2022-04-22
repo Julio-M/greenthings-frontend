@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 
 
-const AsyncTypeahead = withAsync(Typeahead);
+const AsyncTypeahead = withAsync(Typeahead); 
 
 function NewLeisureActivityForm({ mappedRadioButtons }){
 
@@ -134,11 +134,12 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
 
     return(
         <>
-        <h2 style={{textAlign: "center"}}>New Leisure Activity</h2>
+        <h2 id="leisure-title" style={{textAlign: "center"}}>New <span style={{color: "lightblue"}}>Leisure</span> Activity</h2>
 
         <Form onSubmit={handleOnSubmit} className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
+                    <h4 style={{fontWeight: "bold"}}>--Choose an Avatar--</h4>
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
                         {mappedRadioButtons}
                     </ToggleButtonGroup>
@@ -198,35 +199,41 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                         </Form.Group>
                     </Col>
                 </Row>
-                <Form.Group>
-                    <Form.Label>Activity Description</Form.Label>
-                    <Form.Control name="description" value={description} onChange={handleLeisureFormChange} type="text"/>
-                    <Form.Text>Please limit text to no more than N characters.</Form.Text>
-                </Form.Group>
                 <Row>
-                <Col xs={12} md={6}>
+                    <Col xs={12} md={6}>
+                        <Form.Group>
+                            <Form.Label>Activity Description</Form.Label>
+                            <Form.Control id="description-box" name="description" value={description} onChange={handleLeisureFormChange} type="text"/>
+                            <Form.Text>Please limit text to no more than N characters.</Form.Text>
+                        </Form.Group>
+                    </Col>
+                    <Col xs={12} md={6}>    
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Upload Image</Form.Label>
+                            <Form.Control type="file" onChange={handleUpload}/>
+                            <Row>
+                                <Col xs={12} md={3}>
+                                <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
+                                </Col>
+                                <Col xs={12} md={8}>
+                                {progressInstance}
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                <Row>
+                <hr></hr>
+                <Col>
                 <Form.Group>
                     <Form.Label>Location Rating</Form.Label>
                     <Form.Control name="rating" value={rating} onChange={handleLeisureFormChange} type="number"></Form.Control>
                 </Form.Group>
                 </Col>
-                <Col xs={12} md={6}>    
-                    <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Label>Upload Image</Form.Label>
-                        <Form.Control type="file" onChange={handleUpload}/>
-                        <Row>
-                            <Col xs={12} md={3}>
-                            <Button variant="outline-primary" type="submit" onClick={handleImageSubmit}>Submit Image</Button>
-                            </Col>
-                            <Col xs={12} md={8}>
-                            {progressInstance}
-                            </Col>
-                        </Row>
-                    </Form.Group>
-                </Col>
+                
                 </Row>
                 <Form.Group>
-                    <Form.Label>Comment</Form.Label>
+                    <Form.Label>Leave a Comment About the Location!</Form.Label>
                     <Form.Control id="comment-box" name="comment" value={comment} onChange={handleLeisureFormChange} type="text"/>
                 </Form.Group>
 
