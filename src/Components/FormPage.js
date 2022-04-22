@@ -32,7 +32,7 @@ function FormPage(){
         });
     return(
         <>
-            <h1 style={{textAlign: "center", padding: "30px 40px"}}>Are you doing green things? Show it here!</h1>
+            <h1 id="form-header-text" style={{textAlign: "center", padding: "30px 40px"}}>Are you doing green things? Show it here!</h1>
 
             <Container className="form-choice-btn">
                 <p>Toggle between outpost and leisure activities.</p>

@@ -21,7 +21,7 @@ function App() {
       
   //     console.log("First fetch:", outpostData)
   //     outpostData.forEach((outpost) => {
-  //       const newObj = {...outpost, rating: 0, default_image:"./images/park.png"}
+  //       const newObj = {...outpost, default_image:"./images/park.png"}
   //       console.log("NewObj", newObj)
   //       const configObj = {
   //         method: "POST",

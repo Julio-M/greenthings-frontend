@@ -9,7 +9,7 @@ function NavBar(){
     return(
         <Navbar id="global-nav">
             <Container style={{margin: "0px"}}>
-                <Navbar.Brand id="nav-brand" style={{color: "white"}} href="/">
+                <Navbar.Brand id="nav-brand" href="/">
                     <img
                         alt="ActiveCritters"
                         src={require("./images/logo.png")}
@@ -17,9 +17,9 @@ function NavBar(){
                         height="40"/>
                 </Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link style={{color: "white"}} href="/">Home</Nav.Link>
-                    <Nav.Link style={{color: "white"}} href="map">Live Map</Nav.Link>
-                    <Nav.Link style={{color: "white"}} href="new-activity">Post Activity</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="map">Live Map</Nav.Link>
+                    <Nav.Link href="new-activity">Post Activity</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

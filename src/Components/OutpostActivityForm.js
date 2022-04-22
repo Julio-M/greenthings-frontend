@@ -82,11 +82,6 @@ function OutpostActivityForm( { mappedRadioButtons }){
         }
     }
 
-
-    function handleAvatarChange(e){
-        setChecked(e.currentTarget.checked)
-    }
-
     function handleCheckBoxChange(arr){
         setCheckboxValue(arr[1])
         setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
