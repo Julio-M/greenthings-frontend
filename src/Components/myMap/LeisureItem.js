@@ -5,7 +5,9 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import EditModalLeisure from "./EditModalLeisure";
 
-function LeisureItem ({card,patchLeisureData}) {
+function LeisureItem ({card,patchLeisureData,deleteDataLeisure}) {
+
+  const deleteUrl=`http://localhost:9292/leisure-activity/`
 
   const {avatar, image,activity_type, description, rating, comment, leisure_location} = card
 
@@ -19,7 +21,7 @@ function LeisureItem ({card,patchLeisureData}) {
   const handleEditShow = () => setEditShow(true);
 
   const handleDelete =() =>{
-    
+    deleteDataLeisure(deleteUrl,card.id)
   }
 
   let logo;
@@ -51,7 +53,7 @@ function LeisureItem ({card,patchLeisureData}) {
 
   return (
     <>
-       <Card className="mycard" id="outpostCard">
+       <Card className="mycard" id="leisureCard">
         <Card.Img onClick={handleShow} variant="top" src={image?image:leisure_location.default_image} />
         <Card.Body>
           <Card.Title>{logo}</Card.Title>

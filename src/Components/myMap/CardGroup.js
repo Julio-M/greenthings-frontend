@@ -6,10 +6,10 @@ import LeisureItem from "./LeisureItem";
 import React, { useState } from "react";
 import Filters from "./Filters";
 
-function CardGroup ({outpost, leisure, patchData, deleteDataOutpost,patchLeisureData}) {
+function CardGroup ({outpost, leisure, patchData, deleteDataOutpost,patchLeisureData,deleteDataLeisure}) {
   
   const displayOutpostCards = outpost.map(card => <Col><Item card={card} patchData={patchData} deleteDataOutpost={deleteDataOutpost}/></Col>)
-  const displayLeisureCards = leisure.map(card => <Col><LeisureItem card={card} patchLeisureData={patchLeisureData}/></Col>)
+  const displayLeisureCards = leisure.map(card => <Col><LeisureItem card={card} patchLeisureData={patchLeisureData} deleteDataLeisure={deleteDataLeisure}/></Col>)
 
     return (
       <>
