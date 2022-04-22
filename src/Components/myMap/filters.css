@@ -1,9 +1,10 @@
 .filters{
   margin-top: 1rem;
   margin-bottom: 1rem;
-  margin-left: 1rem;
+  margin-left: 15%;
+  cursor: pointer;
 }
 
-.filterbtn{
-  margin-left: 2rem;
+.filterbtn:hover{
+  background-color: rgb(223, 239, 201);
 }

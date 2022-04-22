@@ -1,5 +1,9 @@
 footer {
-    height: 200px;
+    height: 100px;
     background-color: #3E7C17;
     color: black;
+    width: 100%;
+    clear: both;
+    position: relative;
+    margin-top: -200px;
 }

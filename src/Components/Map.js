@@ -80,8 +80,12 @@ function Map(){
     return(
         <>
         <Container fluid >
-            <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData} deleteDataOutpost={deleteDataOutpost} patchLeisureData={patchLeisureData}deleteDataLeisure={deleteDataLeisure}/></div>
-            <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
+            <main>
+                <div className="cardCol"><CardGroup className='allcards' outpost={outpost} leisure={leisure} patchData={patchData} deleteDataOutpost={deleteDataOutpost} patchLeisureData={patchLeisureData}deleteDataLeisure={deleteDataLeisure}/></div>
+            </main>
+            <aside>
+                <div className="mapCol"><MyMap outpost={outpost} leisure={leisure}/></div>
+            </aside>
         </Container>
         </>
     )
