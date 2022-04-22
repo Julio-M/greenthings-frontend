@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import "./NewLeisureActivityForm.css";
+import "./OutpostActivityForm.css";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -126,11 +126,12 @@ function OutpostActivityForm( { mappedRadioButtons }){
 
     return(
         <>
-        <h2 style={{textAlign: "center"}}>New Outpost Activity</h2>
+        <h2 id="outpost-title" style={{textAlign: "center"}}>New <span style={{color: "brown"}}>Outpost</span> Activity</h2>
         
         <Form onSubmit={handleOutpostActivitySubmit} autoComplete="off" className="new-leasure-form">
             <Container fluid>
                 <Container className="avatar-wrap">
+                    <h4 style={{fontWeight: "bold"}}>--Choose an Avatar--</h4>
                     <ToggleButtonGroup className="avatar-group" type="checkbox" value = {checkboxValue} onChange={handleCheckBoxChange}>
                         {mappedRadioButtons}
                     </ToggleButtonGroup>
@@ -188,19 +189,15 @@ function OutpostActivityForm( { mappedRadioButtons }){
                         </Form.Group>
                     </Col>
                 </Row>
-                <Form.Group>
-                    <Form.Label>Activity Description</Form.Label>
-                    <Form.Control name="description" value={description} onChange={handleOutpostActivityFormChange} type="text"/>
-                </Form.Group>
                 <Row>
-                <Col xs={12} md={6}>
-                <Form.Group>
-                    <Form.Label>Outpost rating</Form.Label>
-                    <Form.Control id="outpost-comment-box" name="rating" value={rating} onChange={handleOutpostActivityFormChange} type="number"/>
-                </Form.Group>
-                </Col>
-                <Col xs={12} md={6}> 
-                <Form.Group controlId="formFile" className="mb-3">
+                    <Col xs={12} md={6}>
+                        <Form.Group>
+                            <Form.Label>Activity Description</Form.Label>
+                            <Form.Control id="odb" name="description" value={description} onChange={handleOutpostActivityFormChange} type="text"/>
+                        </Form.Group>
+                    </Col>
+                    <Col xs={12} md={6}> 
+                        <Form.Group controlId="formFile" className="mb-3">
                         <Form.Label>Upload Image</Form.Label>
                         <Form.Control type="file" onChange={handleUpload}/>
                         <Row>
@@ -213,12 +210,20 @@ function OutpostActivityForm( { mappedRadioButtons }){
                         </Row>
                     </Form.Group>
                     </Col>
-                    </Row>
-                <Form.Group>
-                    <Form.Label>Comment</Form.Label>
-                    <Form.Control id="outpost-comment-box" name="comment" value={comment} onChange={handleOutpostActivityFormChange} type="text"/>
-                </Form.Group>
-                {/* TO DO: Handle on Submit to make a fetch request */}
+                </Row>
+                <hr></hr>
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Form.Group>
+                            <Form.Label>Outpost rating</Form.Label>
+                            <Form.Control id="orb" name="rating" value={rating} onChange={handleOutpostActivityFormChange} type="number"/>
+                        </Form.Group>
+                    </Col>
+                </Row>
+                    <Form.Group>
+                        <Form.Label>Leave a Comment About the Outpost Location!</Form.Label>
+                        <Form.Control id="ocb" name="comment" value={comment} onChange={handleOutpostActivityFormChange} type="text"/>
+                    </Form.Group>
                 <Container style={{textAlign: "center"}}>
                     <Button style={{margin: "20px 0px", backgroundColor: "#A35709", border:"none"}} type="submit">Add New Outpost Activity</Button>
                 </Container>
