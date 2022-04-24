@@ -54,7 +54,7 @@ function LeisureItem ({card,patchLeisureData,deleteDataLeisure}) {
   return (
     <>
        <Card className="mycard" id="leisureCard">
-        <Card.Img onClick={handleShow} variant="top" src={image?image:leisure_location.default_image} />
+        <Card.Img className="cardImg" onClick={handleShow} variant="top" src={image?image:leisure_location.default_image} />
         <Card.Body className="cardBody">
           <Card.Title>{logo}</Card.Title>
           <Card.Text>Activity: {activity_type}</Card.Text>
@@ -70,7 +70,7 @@ function LeisureItem ({card,patchLeisureData,deleteDataLeisure}) {
     <Modal.Header closeButton>
       <Modal.Title>{activity_type}</Modal.Title>
     </Modal.Header>
-    <img src="https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg"/>
+    <img src="https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg" alt="default"/>
     <Modal.Body>
       <small>{logo} * {rating}/10</small> 
       <h5>Description</h5>

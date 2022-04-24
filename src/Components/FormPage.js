@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import "./FormPage.css";
 import Container from 'react-bootstrap/Container';
 import ToggleButton from 'react-bootstrap/ToggleButton';
-import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
 import { avatarOptions } from "./data/Avatars";
 
 function FormPage(){

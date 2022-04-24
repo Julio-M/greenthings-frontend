@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import "./OutpostActivityForm.css";
@@ -10,9 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { Typeahead, withAsync } from 'react-bootstrap-typeahead';
 import axios from 'axios'
 import ProgressBar from 'react-bootstrap/ProgressBar'
-import ToggleButton from 'react-bootstrap/ToggleButton';
 import ToggleButtonGroup from 'react-bootstrap/ToggleButtonGroup';
-import { avatarOptions } from "./data/Avatars";
 
 const AsyncTypeahead = withAsync(Typeahead);
 
@@ -23,8 +21,6 @@ function OutpostActivityForm( { mappedRadioButtons }){
     
     let navigate = useNavigate()
 
-    const [checked, setChecked] = useState(false);
-    const [radioValue, setRadioValue] = useState('');
     const [checkboxValue, setCheckboxValue] = useState('');
     const [outpostActivityForm, setOutpostActivityFormState] = useState({
         avatar: "Deer",
@@ -37,12 +33,10 @@ function OutpostActivityForm( { mappedRadioButtons }){
         comment: ""
       })
 
-      const {avatar, 
+      const {
              activity_type, 
-             outpost_id, 
              description,
              datetime,
-             image, 
              rating,
              comment} = outpostActivityForm
      
@@ -123,6 +117,7 @@ function OutpostActivityForm( { mappedRadioButtons }){
             setCheckboxValue(arr[1])
             setOutpostActivityFormState({...outpostActivityForm, avatar: arr[1]})
         }
+    
 
     return(
         <>

@@ -3,7 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Item from "./Item";
 import LeisureItem from "./LeisureItem";
 
-import React, { useState,useEffect } from "react";
+import React, { useState } from "react";
 import Filters from "./Filters";
 
 function CardGroup ({outpost, leisure, patchData, deleteDataOutpost,patchLeisureData,deleteDataLeisure}) {

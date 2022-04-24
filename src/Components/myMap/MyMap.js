@@ -5,7 +5,6 @@ import Card from 'react-bootstrap/Card'
 
 export default function MyMap({outpost,leisure}) {
 
-
   // console.log(outpost.ntaname)
   const [overlay,setOverlay] =useState(false)
   const [overCoordinates, setOverCoordinates] = useState([40.74253751019931, -73.99234182490424])
@@ -55,7 +54,7 @@ export default function MyMap({outpost,leisure}) {
   const displayLeisureMarker = leisure.map(le => <Marker key={le.id} onClick={handleClick} width={50} anchor={[parseFloat(le.leisure_location.latitude),parseFloat(le.leisure_location.longitude)]} color={'#7393B3'} payload={le}/> )
 
   return (
-    <Map onClick={handleTooltip} height={1000} defaultCenter={overCoordinates} defaultZoom={14}>
+    <Map onClick={handleTooltip} height={1000} defaultCenter={overCoordinates} defaultZoom={11}>
     {displayOutpostMarker}
     {displayLeisureMarker}
     {overlay?displayOverlay:null}

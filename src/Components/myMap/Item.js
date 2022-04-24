@@ -3,7 +3,6 @@ import Card from 'react-bootstrap/Card'
 import './item.css'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import { useNavigate } from "react-router-dom"; // v6
 import EditModal from "./EditModal";
 
 
@@ -13,9 +12,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
 
   const defaultImage = `https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg"`
 
-  const {avatar,activity_type,datetime,description, image,comment, outpost,rating} = card
-
-  const navigate = useNavigate();
+  const {avatar,activity_type,description, image,comment, outpost,rating} = card
 
   const [show, setShow] = useState(false);
   const [editShow, setEditShow] = useState(false);
@@ -61,7 +58,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
     return (
         <>
            <Card className="mycard" id="outpostCard">
-            <Card.Img onClick={handleShow} variant="top" src={image?image:defaultImage} />
+            <Card.Img className="cardImg" onClick={handleShow} variant="top" src={image?image:defaultImage} />
             <Card.Body className="cardBody">
               <Card.Title>{logo}</Card.Title>
               <Card.Text>Activity: {activity_type}</Card.Text>
@@ -77,7 +74,7 @@ function Item ({card, patchData, deleteDataOutpost}) {
         <Modal.Header closeButton>
           <Modal.Title>{activity_type}</Modal.Title>
         </Modal.Header>
-        <img src={image?image:defaultImage}/>
+        <img src={image?image:defaultImage} alt='default'/>
         <Modal.Body>
           <small>{logo} * {rating}/10</small> 
           <h5>Description</h5>

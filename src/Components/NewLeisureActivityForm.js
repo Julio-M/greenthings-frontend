@@ -43,12 +43,10 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
         setLeisureForm({...leisureForm, avatar: arr[1]})
     }
 
-      const {avatar, 
+      const {
              activity_type, 
-             leisure_location_id, 
              description, 
              datetime,
-             image,
              rating, 
              comment} = leisureForm
 
