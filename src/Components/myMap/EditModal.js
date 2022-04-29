@@ -5,12 +5,12 @@ import Modal from 'react-bootstrap/Modal'
 
 function EditModal ({handleEditShow,handleEditClose, editShow, card, patchData}) {
 
-  const patchOutpostUrl = `http://localhost:9292/outpost-activity/`
+  const patchOutpostUrl = `https://secret-lowlands-44368.herokuapp.com/outpost-activity/`
   const [location,setLocation]= useState([])
 
 
   const locationFetch = () => {
-    fetch(`http://localhost:9292/outposts`)
+    fetch(`https://secret-lowlands-44368.herokuapp.com/outposts`)
     .then( res => res.json())
     .then( data => setLocation(data))
     .catch( error => console.log(error.message));

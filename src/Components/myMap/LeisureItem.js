@@ -7,7 +7,7 @@ import EditModalLeisure from "./EditModalLeisure";
 
 function LeisureItem ({card,patchLeisureData,deleteDataLeisure}) {
 
-  const deleteUrl=`http://localhost:9292/leisure-activity/`
+  const deleteUrl=`https://secret-lowlands-44368.herokuapp.com/leisure-activity/`
 
   const {avatar, image,activity_type, description, rating, comment, leisure_location} = card
 

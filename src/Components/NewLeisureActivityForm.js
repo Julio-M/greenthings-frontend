@@ -103,7 +103,7 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                 },
                 body: JSON.stringify(leisureForm)
             }
-            fetch("http://localhost:9292/leisure-acivities", configObj)
+            fetch("https://secret-lowlands-44368.herokuapp.com/leisure-acivities", configObj)
             .then(res => {
                 if(res.status === 200){
                 setModalIsVisible(true);
@@ -162,7 +162,7 @@ function NewLeisureActivityForm({ mappedRadioButtons }){
                                 id="activity-location-input" 
                                 onSearch={()=>{
                                     setTypeaheadState({...typeahead, isLoading: true});
-                                    fetch("http://localhost:9292/leisure-locations")
+                                    fetch("https://secret-lowlands-44368.herokuapp.com/leisure-locations")
                                     .then(res => res.json())
                                     .then(outposts => {
                                         const nameArray = outposts.map(leisure => {

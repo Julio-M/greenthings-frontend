@@ -8,7 +8,7 @@ import EditModal from "./EditModal";
 
 function Item ({card, patchData, deleteDataOutpost}) {
 
-  const deleteOutUrl = `http://localhost:9292/outposts-activity/`
+  const deleteOutUrl = `https://secret-lowlands-44368.herokuapp.com/outposts-activity/`
 
   const defaultImage = `https://76crb34usu-flywheel.netdna-ssl.com/wp-content/uploads/2017/12/iStock-902227708.jpg"`
 

@@ -5,13 +5,13 @@ import Modal from 'react-bootstrap/Modal'
 
 function EditModalLeisure ({handleEditShow,handleEditClose, editShow, card, patchLeisureData}) {
 
-  const patchLeisureUrl = `http://localhost:9292/leisure-activity/`
+  const patchLeisureUrl = `https://secret-lowlands-44368.herokuapp.com/leisure-activity/`
 
   const [location,setLocation]= useState([])
 
 
   const locationFetch = () => {
-    fetch(`http://localhost:9292/leisure-locations`)
+    fetch(`https://secret-lowlands-44368.herokuapp.com/leisure-locations`)
     .then( res => res.json())
     .then( data => setLocation(data))
     .catch( error => console.log(error.message));

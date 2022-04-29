@@ -31,7 +31,7 @@ function App() {
   //         },
   //         body: JSON.stringify(newObj)
   //       }
-  //       fetch("http://localhost:9292/outposts", configObj)
+  //       fetch("https://secret-lowlands-44368.herokuapp.com/outposts", configObj)
   //       .then(res => res.json())
   //       .then(postedOutpost => console.log(postedOutpost))
   //     })

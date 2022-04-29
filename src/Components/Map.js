@@ -9,8 +9,8 @@ function Map(){
     const [outpost, setOutpost] = useState([]);
     const [leisure, setLeisure] = useState([])
 
-    const outpostUrl = `http://localhost:9292/outpost-activities`
-    const leisureUrl = `http://localhost:9292/leisure-activities`
+    const outpostUrl = `https://secret-lowlands-44368.herokuapp.com/outpost-activities`
+    const leisureUrl = `https://secret-lowlands-44368.herokuapp.com/leisure-activities`
 
     const getData = (url,activity) => {
         fetch(url)
