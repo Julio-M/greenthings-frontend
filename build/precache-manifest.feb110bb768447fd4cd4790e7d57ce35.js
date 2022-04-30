@@ -56,12 +56,12 @@ self.__precacheManifest = [
     "url": "/static/media/raccoon.35facfec.png"
   },
   {
-    "revision": "f3a6065b9d00a3c5993a2883cca1c00a",
-    "url": "/static/media/activity.f3a6065b.png"
-  },
-  {
     "revision": "fcc2a1c9a0d3fd9c8292901062aae8a8",
     "url": "/static/media/map.fcc2a1c9.png"
+  },
+  {
+    "revision": "f3a6065b9d00a3c5993a2883cca1c00a",
+    "url": "/static/media/activity.f3a6065b.png"
   },
   {
     "revision": "77a6fdbc5b3a16d3105755696c271a01",
