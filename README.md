@@ -1,6 +1,6 @@
-# greenthings-backend
+# greenthings-frontend
 
-`greenthings-backed` Front-end setup.
+`greenthings-frontend` Front-end setup.
 
 # Getting Started with Create React App
 
